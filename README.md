@@ -12,7 +12,7 @@ If you downloaded just the binaries, place the `*.dll` wherever you will in your
 
 There is one benefit to using the binaries over the source code. MonoDevelop doesn't play nice with binding projects yet and highlights all the code using them red. Autocompletion is also not available when referencing binding project.
 
-There is no such problem if you reference the compiled `*.dll` itself.
+There is no such problem if you reference the compiled `*.dll` itself.  
 Whichever way you decide to link the binding, there are three things you need to do next.
 
 ### Add Resource Bundle
