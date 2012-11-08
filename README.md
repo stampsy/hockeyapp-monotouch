@@ -4,17 +4,26 @@ This project implements MonoTouch C# bindings for [HockeyApp SDK](https://github
 
 ## Integration
 
-You can git clone this project or [download a compiled binary](https://github.com/downloads/stampsy/hockeyapp-monotouch/hockeyapp-monotouch.zip) and reference it like a normal .NET library. There are three things you need to next.
+You can git clone this project or [download a compiled binary](https://github.com/downloads/stampsy/hockeyapp-monotouch/hockeyapp-monotouch.zip) and reference it like a normal .NET library. 
+
+If you clone the binding, copy `HockeyApp` folder to your solution folder alongside with your project. Then add a reference to the `HockeyApp/HockeyApp.csproj` in Projects tab.
+
+If you downloaded just the binaries, place the `*.dll` wherever you will in your project and then locate it using .NET Assembly tab in Add Reference dialog, as you would normally do.
+
+There is one benefit to using the binaries over the source code. MonoDevelop doesn't play nice with binding projects yet and highlights all the code using them red. Autocompletion is also not available when referencing binding project.
+
+There is no such problem if you reference the compiled `*.dll` itself.
+Whichever way you decide to link the binding, there are three things you need to do next.
 
 ### Add Resource Bundle
 
 First, copy `HockeySDKResources.bundle` from the binding directory to your **application project** (not the binding project!). Right-click your project in Solution Explorer and check Show All Files in Display Options. Find `HockeySDKResources.bundle` in your project tree, right-click it and click Include in Project. You can uncheck Show All Files now.
 
-### Specify app version
+### Specify App Version
 
 HockeyApp uses short bundle identifier in its user interface to differentiate between versions and it makes sense to set a different one each time you upload a new build on HockeyApp. To do so, open your `Info.plist` on Advanced tab and add a string value called `CFBundleShortVersionString`. It has no strict format.
 
-### Tell HockeyApp to initialize
+### Tell HockeyApp to Get Going
 
 Finally, you need to tell HockeyApp to activate and [give it your HockeyApp Public ID](http://support.hockeyapp.net/kb/how-tos/how-to-find-the-app-identifier). You will probably want to do it in `FinishedLaunching` method inside your `AppDelegate`. You can wrap HockeyApp activation in `#if !DEBUG` directive so it is stripped out of debug builds.
 
@@ -39,7 +48,7 @@ Your code will end up looking similar to this:
 
 For your convenience, **all of these steps have already been done in the sample app** so you can just check it out. Still, don't forget to specify your app key in `AppDelegate`.
 
-## Uploading builds to HockeyApp
+## Uploading Builds to HockeyApp
 
 Skip this section if you're familiar with HockeyApp or TestFlight process.
 
