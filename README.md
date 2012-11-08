@@ -4,7 +4,7 @@ This project implements MonoTouch C# bindings for [HockeyApp SDK](https://github
 
 ## Integration
 
-You can git clone this project or download a compiled binary and reference it like a normal .NET library.
+You can git clone this project or [download a compiled binary](https://github.com/downloads/stampsy/hockeyapp-monotouch/hockeyapp-monotouch.zip) and reference it like a normal .NET library.
 
 Things to do next:
 
@@ -18,7 +18,7 @@ HockeyApp uses short bundle identifier in its user interface to differentiate be
 
 ### Tell HockeyApp to initialize
 
-Finally, you need to tell HockeyApp to activate and provide an API key. You will probably want to do it in your `AppDelegate`'s  `FinishedLaunching` method. It also makes sense to wrap HockeyApp activation in `#if not DEBUG` directive so it is stripped out of debug builds.
+Finally, you need to tell HockeyApp to activate and provide an API key. You will probably want to do it in your `AppDelegate`'s  `FinishedLaunching` method. It also makes sense to wrap HockeyApp activation in `#if !DEBUG` directive so it is stripped out of debug builds.
 
 Here's how it looks:
 
