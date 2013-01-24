@@ -13,7 +13,7 @@ If you downloaded just the binaries, place the `*.dll` wherever you will in your
 There is one benefit to using the binaries over the source code. MonoDevelop doesn't play nice with binding projects yet and highlights all the code using them red. Autocompletion is also not available when referencing binding project.
 
 There is no such problem if you reference the compiled `*.dll` itself.  
-Whichever way you decide to link the binding, there are three things you need to do next.
+Whichever way you decide to link the binding, there are four things you need to do next.
 
 ### Add Resource Bundle
 
@@ -22,6 +22,15 @@ First, copy `HockeySDKResources.bundle` from the binding directory to your **app
 ### Specify App Version
 
 HockeyApp uses short bundle identifier in its user interface to differentiate between versions and it makes sense to set a different one each time you upload a new build on HockeyApp. To do so, open your `Info.plist` on Advanced tab and add a string value called `CFBundleShortVersionString`. It has no strict format.
+
+### Add Null Reference Exception Fix
+
+**This piece is super duper important. Your app will crash if you don't do this.**
+
+Any iOS crash reporting library overrides signal handlers to catch crashes. Unfortunately Mono needs to handle `SIGSEGV` and `SIGBUS` itself, or any null reference exception will crash your app, whether it was handled or not.  
+Fortunately, [adding some extra code to `AppDelegate.cs`](http://stackoverflow.com/a/14499336/458193) fixes the problem.
+
+You can see this fix in action in the sample project included with this library.
 
 ### Tell HockeyApp to Get Going
 
