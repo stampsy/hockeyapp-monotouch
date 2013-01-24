@@ -23,6 +23,10 @@ First, copy `HockeySDKResources.bundle` from the binding directory to your **app
 
 HockeyApp uses short bundle identifier in its user interface to differentiate between versions and it makes sense to set a different one each time you upload a new build on HockeyApp. To do so, open your `Info.plist` on Advanced tab and add a string value called `CFBundleShortVersionString`. It has no strict format.
 
+### Tell HockeyApp to Get Going
+
+You need to tell HockeyApp to activate and [give it your HockeyApp Public ID](http://support.hockeyapp.net/kb/how-tos/how-to-find-the-app-identifier). You will probably want to do it in `FinishedLaunching` method inside your `AppDelegate`. You can wrap HockeyApp activation in `#if !DEBUG` directive so it is stripped out of debug builds.
+
 ### Add Null Reference Exception Fix
 
 **This piece is super duper important. Your app will crash if you don't do this.**
@@ -31,34 +35,14 @@ Any iOS crash reporting library overrides signal handlers to catch crashes. Unfo
 
 Fortunately, [adding some extra code to AppDelegate fixes the problem](http://stackoverflow.com/a/14499336/458193).
 
-[Do this now](http://stackoverflow.com/a/14499336/458193). I'll wait.
 
-You can see this fix in action in the sample project included with this library.
-
-### Tell HockeyApp to Get Going
-
-Finally, you need to tell HockeyApp to activate and [give it your HockeyApp Public ID](http://support.hockeyapp.net/kb/how-tos/how-to-find-the-app-identifier). You will probably want to do it in `FinishedLaunching` method inside your `AppDelegate`. You can wrap HockeyApp activation in `#if !DEBUG` directive so it is stripped out of debug builds.
-
-Your code will end up looking similar to this:
-
-    const string HockeyAppId = "0123456789abcdeffedcba09876543210";
-
-    static void EnableCrashReporting()
-    {
-        var manager = BITHockeyManager.SharedHockeyManager;
-        manager.Configure(HockeyAppId, null);
-        manager.StartManager();
-    }
-
-    public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
-    {
-    #if !DEBUG
-        EnableCrashReporting();
-    #endif
-        return true;
-    }       
+------
 
 For your convenience, **all of these steps have already been done in the sample app** so you can just check it out. Still, don't forget to specify your app key in `AppDelegate`.
+
+Your `AppDelegate` should end up like [this](https://github.com/stampsy/hockeyapp-monotouch/blob/master/SampleApp/AppDelegate.cs).
+
+----
 
 ## Uploading Builds to HockeyApp
 
