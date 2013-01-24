@@ -28,7 +28,10 @@ HockeyApp uses short bundle identifier in its user interface to differentiate be
 **This piece is super duper important. Your app will crash if you don't do this.**
 
 Any iOS crash reporting library overrides signal handlers to catch crashes. Unfortunately Mono needs to handle `SIGSEGV` and `SIGBUS` itself, or any null reference exception will crash your app, whether it was handled or not.  
-Fortunately, [adding some extra code to `AppDelegate.cs`](http://stackoverflow.com/a/14499336/458193) fixes the problem.
+
+Fortunately, [adding some extra code to AppDelegate fixes the problem](http://stackoverflow.com/a/14499336/458193).
+
+[Do this now](http://stackoverflow.com/a/14499336/458193). I'll wait.
 
 You can see this fix in action in the sample project included with this library.
 
