@@ -15,6 +15,14 @@ There is one benefit to using the binaries over the source code. MonoDevelop doe
 There is no such problem if you reference the compiled `*.dll` itself.  
 Whichever way you decide to link the binding, there are four things you need to do next.
 
+------
+
+For your convenience, **all of these steps have already been done in the sample app** so you can just check it out. Still, don't forget to specify your app key in `AppDelegate`.
+
+Your `AppDelegate` should end up looking like [this](https://github.com/stampsy/hockeyapp-monotouch/blob/master/SampleApp/AppDelegate.cs) when you're done.
+
+----
+
 ### Add Resource Bundle
 
 First, copy `HockeySDKResources.bundle` from the binding directory to your **application project** (not the binding project!). Right-click your project in Solution Explorer and check Show All Files in Display Options. Find `HockeySDKResources.bundle` in your project tree, right-click it and click Include in Project. You can uncheck Show All Files now.
@@ -34,15 +42,6 @@ You need to tell HockeyApp to activate and [give it your HockeyApp Public ID](ht
 Any iOS crash reporting library overrides signal handlers to catch crashes. Unfortunately Mono needs to handle `SIGSEGV` and `SIGBUS` itself, or any null reference exception will crash your app, whether it was handled or not.  
 
 Fortunately, [adding some extra code to AppDelegate fixes the problem](http://stackoverflow.com/a/14499336/458193).
-
-
-------
-
-For your convenience, **all of these steps have already been done in the sample app** so you can just check it out. Still, don't forget to specify your app key in `AppDelegate`.
-
-Your `AppDelegate` should end up like [this](https://github.com/stampsy/hockeyapp-monotouch/blob/master/SampleApp/AppDelegate.cs).
-
-----
 
 ## Uploading Builds to HockeyApp
 
