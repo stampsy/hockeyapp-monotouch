@@ -13,10 +13,16 @@ namespace HockeyApp
         BITHockeyManager SharedHockeyManager { get; }
 
         [Export("configureWithIdentifier:delegate:")]
-        void Configure(string identifier, [NullAllowed] NSObject del);
+        void Configure(string identifier, [NullAllowed] BITCrashManagerDelegate del);
 
         [Export("startManager")]
         void StartManager();
+    }
+
+    [BaseType (typeof (NSObject)), Model]
+    public interface BITCrashManagerDelegate {
+        [Export ("applicationLogForCrashManager:")]
+        string GetApplicationLog (NSObject crashManager);
     }
 }
 
