@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using HockeyApp;
+using MonoTouch.Dialog;
 
 namespace SampleApp
 {
@@ -14,6 +15,10 @@ namespace SampleApp
 			get;
 			set;
 		}
+		UINavigationController _nav;
+		DialogViewController _rootVc;
+		RootElement _rootElement;
+		StyledStringElement _button;
 
 		// Put your HockeyApp ID here
 		const string HockeyAppId = "";
@@ -21,6 +26,18 @@ namespace SampleApp
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			EnableCrashReporting ();
+
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			_button = new StyledStringElement("Test");
+			_button.Tapped += delegate {
+				throw new Exception("test");
+			};
+
+			_rootElement = new RootElement("HockeyTest"){new Section(){_button} };
+			_rootVc = new DialogViewController(_rootElement);
+			_nav = new UINavigationController(_rootVc);
+			Window.RootViewController = _rootVc;
+			Window.MakeKeyAndVisible();
 			return true;
 		}
 
