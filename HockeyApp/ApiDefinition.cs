@@ -15,6 +15,9 @@ namespace HockeyApp
         [Export("configureWithIdentifier:delegate:")]
         void Configure(string identifier, [NullAllowed] BITCrashManagerDelegate del);
 
+        [Export("debugLogEnabled")]
+        bool DebugLogEnabled { get; set; }
+
         [Export("startManager")]
         void StartManager();
     }
