@@ -97,12 +97,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\HockeyApp\HockeyApp.csproj">
-      <Project>{D5C80D93-FF55-47E6-BAA3-9E13B6CB6954}</Project>
-      <Name>HockeyApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="HockeySDKResources.bundle\de.lproj\HockeySDK.strings" />
     <BundleResource Include="HockeySDKResources.bundle\en.lproj\HockeySDK.strings" />
     <BundleResource Include="HockeySDKResources.bundle\es.lproj\HockeySDK.strings" />
