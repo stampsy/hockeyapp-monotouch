@@ -13,7 +13,7 @@ namespace HockeyApp
         BITHockeyManager SharedHockeyManager { get; }
 
         [Export("configureWithIdentifier:delegate:")]
-        void Configure(string identifier, [NullAllowed] BITCrashManagerDelegate del);
+        void Configure(string identifier, [NullAllowed] NSObject del);
 
         [Export("debugLogEnabled")]
         bool DebugLogEnabled { get; set; }
