@@ -75,6 +75,9 @@ namespace SampleApp
 			// Restore Mono SIGSEGV and SIGBUS handlers            
 			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
 			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+
+			Marshal.FreeHGlobal (sigbus);
+			Marshal.FreeHGlobal (sigsegv);
 		}
 		
 		static void EnableCrashReportingUnsafe ()
@@ -85,7 +88,11 @@ namespace SampleApp
 			
 			// Verify in documentation that your library of choice
 			// installs its sigaction hooks before leaving this method.
-			
+
+			if (string.IsNullOrWhiteSpace (HockeyAppId)) {
+				throw new Exception ("You forgot to fill in your HockeyApp app ID.");
+			}
+
 			var manager = BITHockeyManager.SharedHockeyManager;
 			manager.Configure (HockeyAppId, null);
 			manager.StartManager ();
