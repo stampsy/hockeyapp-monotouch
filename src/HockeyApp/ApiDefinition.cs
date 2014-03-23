@@ -21,21 +21,21 @@ namespace HockeyApp
         [Export("startManager")]
         void StartManager();
 
-		[Export ("crashManager", ArgumentSemantic.Retain)]
-		BITCrashManager CrashManager { get; }
+        [Export ("crashManager", ArgumentSemantic.Retain)]
+        BITCrashManager CrashManager { get; }
     }
 
-	[BaseType (typeof (NSObject))]
-	public partial interface BITHockeyBaseManager {
-		[Export ("serverURL", ArgumentSemantic.Copy)]
-		string ServerURL { get; set; }
-	}
+    [BaseType (typeof (NSObject))]
+    public partial interface BITHockeyBaseManager {
+        [Export ("serverURL", ArgumentSemantic.Copy)]
+        string ServerURL { get; set; }
+    }
 
-	[BaseType (typeof (BITHockeyBaseManager))]
-	public partial interface BITCrashManager {
-		[Export ("crashManagerStatus")]
-		BITCrashManagerStatus CrashManagerStatus { get; set; }
-	}
+    [BaseType (typeof (BITHockeyBaseManager))]
+    public partial interface BITCrashManager {
+        [Export ("crashManagerStatus")]
+        BITCrashManagerStatus CrashManagerStatus { get; set; }
+    }
 
     [BaseType (typeof (NSObject)), Model]
     public interface BITCrashManagerDelegate {
@@ -43,10 +43,10 @@ namespace HockeyApp
         string GetApplicationLog (NSObject crashManager);
     }
 
-	[BaseType (typeof (NSObject)), Model]
-	public interface BITUpdateManagerDelegate {
-		[Export ("customDeviceIdentifierForUpdateManager:")]
-		string GetCustomDeviceIdentifier (NSObject updateManager);
-	}
+    [BaseType (typeof (NSObject)), Model]
+    public interface BITUpdateManagerDelegate {
+        [Export ("customDeviceIdentifierForUpdateManager:")]
+        string GetCustomDeviceIdentifier (NSObject updateManager);
+    }
 }
 
