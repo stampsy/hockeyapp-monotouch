@@ -80,4 +80,7 @@
     <BundleResource Include="HockeySDKResources.bundle\feedbackActiviy%402x.png" />
     <BundleResource Include="HockeySDKResources.bundle\Info.plist" />
   </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
 </Project>

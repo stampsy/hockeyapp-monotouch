@@ -95,6 +95,10 @@ namespace SampleApp
 
 			var manager = BITHockeyManager.SharedHockeyManager;
 			manager.Configure (HockeyAppId, null);
+
+			// Uncomment following line to enable auto-send of crash reports on relaunch of app
+			// manager.CrashManager.CrashManagerStatus = BITCrashManagerStatus.AutoSend;
+
 			manager.StartManager ();
 		}		
 	}
