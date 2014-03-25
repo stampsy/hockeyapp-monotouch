@@ -37,13 +37,13 @@ namespace HockeyApp
         BITCrashManagerStatus CrashManagerStatus { get; set; }
     }
 
-    [BaseType (typeof (NSObject)), Model]
+    [BaseType (typeof (NSObject)), Model, Protocol]
     public interface BITCrashManagerDelegate {
         [Export ("applicationLogForCrashManager:")]
         string GetApplicationLog (NSObject crashManager);
     }
 
-    [BaseType (typeof (NSObject)), Model]
+    [BaseType (typeof (NSObject)), Model, Protocol]
     public interface BITUpdateManagerDelegate {
         [Export ("customDeviceIdentifierForUpdateManager:")]
         string GetCustomDeviceIdentifier (NSObject updateManager);
